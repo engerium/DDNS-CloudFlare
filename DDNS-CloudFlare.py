@@ -11,6 +11,10 @@ import subprocess
 
 # Constants
 API_KEY = ""
+DNS_ID = ""
+EMAIL = ""
+DOMAIN = ""
+DNS_NAME = ""
 
 
 # Main function
@@ -27,8 +31,20 @@ def main():
 
 	# Update CloudFlare with current IP
 	else:
-		print ip
-		print log_ip
+		os.system("curl https://www.cloudflare.com/api_json.html \
+  					-d 'a=rec_edit' \
+ 			 		-d 'tkn=" + API_KEY + "' \
+  					-d 'id=" + DNS_ID + "' \
+  					-d 'email=" + EMAIL + "' \
+  					-d 'z=" + DOMAIN + "' \
+			  		-d 'type=A' \
+			  		-d 'name=" + DNS_NAME + "' \
+			  		-d 'content=" + ip + "' \
+ 		 			-d 'service_mode=1' \
+  					-d 'ttl=1'")
+
+		# Remove old log file
+		os.remove("./.DDNS-CloudFlare.ip")
 
 
 # Get current Public IP address
