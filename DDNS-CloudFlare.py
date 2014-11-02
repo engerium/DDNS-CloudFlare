@@ -70,11 +70,11 @@ def get_dns_id():
 		if rec['display_name'] == NAME:
 			DNS_ID = rec['rec_id']
 
-# Get current Public IP address
+# Get current public IP address
 def get_ip():
 	return subprocess.check_output(["curl", "-s", "http://icanhazip.com/"]).strip("\n") 
 
-# Open log file to get old ip address
+# Open log file to get old IP address
 def open_log(filename, new_ip):
 	try:
 		file = open(filename, "r")
